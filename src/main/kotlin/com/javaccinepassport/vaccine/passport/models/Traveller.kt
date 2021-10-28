@@ -29,6 +29,8 @@ class Traveller {
 
     private var vaccineReport: List<VaccineReport> = null
 
+    private var listFiveCountriesVisited: List<Country>
+
 
 
 }
