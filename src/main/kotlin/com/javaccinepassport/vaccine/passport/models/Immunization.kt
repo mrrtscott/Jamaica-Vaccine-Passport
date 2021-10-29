@@ -2,6 +2,7 @@ package com.javaccinepassport.vaccine.passport.models
 
 import com.javaccinepassport.vaccine.passport.models.Enum.VaccineStatus
 import java.util.*
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
 
@@ -9,6 +10,7 @@ import javax.persistence.Id
 class Immunization {
     @Id
     private var id: UUID = UUID.randomUUID()
+    @Column(unique = true)
     private var vaccineName: String? = null
     private var batchLotNumber: Int? = null
     private var vaccinator: String? = null
