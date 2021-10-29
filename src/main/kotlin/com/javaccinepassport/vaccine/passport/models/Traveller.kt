@@ -2,8 +2,7 @@ package com.javaccinepassport.vaccine.passport.models
 
 import com.javaccinepassport.vaccine.passport.models.Enum.Sex
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
 
@@ -23,13 +22,37 @@ class Traveller {
     private var nationality: String? = null
     private var dateOfBirth: Date? = null
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "traveller_addresses",
+        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "addressId", referencedColumnName = "id")]
+    )
     private var permanentAddress: List<Address>? = null
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "traveller_passports",
+        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "passportId", referencedColumnName = "id")]
+    )
     private var passportDocument: List<Passport>? = null
 
-    private var vaccineReport: List<VaccineReport> = null
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "traveller_vaccineReports",
+        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "vaccineReportId", referencedColumnName = "id")]
+    )
+    private var vaccineReport: List<VaccineReport>? = null
 
-    private var listFiveCountriesVisited: List<Country> = null
+    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "traveller_countries",
+        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "countryId", referencedColumnName = "id")]
+    )
+    private var listCountriesVisited: List<Country>? = null
 
 
 
