@@ -6,19 +6,39 @@ import javax.persistence.Id
 import javax.validation.constraints.NotBlank
 
 @Entity
-class Passport {
-
+class Passport(
     @Id
-    private var passportNumber: String? = null
-    @NotBlank
-    private var type: String? = null
-    @NotBlank
-    private var countryCode:String? = null
-    @NotBlank
-    private var placeOfIssue: String? = null
-    @NotBlank
-    private var dateOfIssue: Date? = null
-    @NotBlank
-    private var dateOfExpiry: Date? = null
+    private var passportNumber: String?, @NotBlank
+    private var type: String?, @NotBlank
+    private var countryCode: String?, @NotBlank
+    private var placeOfIssue: String?, @NotBlank
+    private var dateOfIssue: Date?, @NotBlank
+    private var dateOfExpiry: Date?
+) {
+
+
+    fun getPassportNumber(): String?{
+        return this.passportNumber
+    }
+
+    fun getType(): String?{
+        return this.type
+    }
+
+    fun getCountryCode(): String?{
+        return this.countryCode
+    }
+
+    fun getPlaceOfIssue(): String?{
+        return this.placeOfIssue
+    }
+
+    fun getDateOfIssue(): Date?{
+        return this.dateOfIssue
+    }
+
+    fun getDateOfExpiry(): Date?{
+        return this.dateOfExpiry
+    }
 
 }

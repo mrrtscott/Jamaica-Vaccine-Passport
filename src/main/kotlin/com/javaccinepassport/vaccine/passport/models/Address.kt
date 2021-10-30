@@ -8,36 +8,19 @@ import javax.persistence.Enumerated
 import javax.persistence.Id
 
 @Entity
-class Address {
+class Address(
+    @Enumerated(EnumType.STRING)
+    private var addressType: ApplicantAddressType?,
+    private var streetNumber: String?,
+    private var streetName: String?,
+    private var city: String?,
+    private var parish: String?,
+    private var county: String?,
+    private var country: String?
+) {
 
     @Id
     private var id: UUID = UUID.randomUUID()
-    @Enumerated(EnumType.STRING)
-    private var addressType: ApplicantAddressType? = null
-    private var streetNumber:String? = null
-    private var streetName:String? = null
-    private var city:String? = null
-    private var parish:String?= null
-    private var county:String? = null
-    private var country: String? = null
-
-    constructor(
-        addressType: ApplicantAddressType?,
-        streetNumber: String?,
-        streetName: String?,
-        city: String?,
-        parish: String?,
-        county: String?,
-        country: String?
-    ) {
-        this.addressType = addressType
-        this.streetNumber = streetNumber
-        this.streetName = streetName
-        this.city = city
-        this.parish = parish
-        this.county = county
-        this.country = country
-    }
 
     fun getId(): UUID {
         return this.id
@@ -69,5 +52,34 @@ class Address {
 
     fun getCountry (): String? {
         return this.country
+    }
+
+
+    fun setAddressType(addressType: ApplicantAddressType?){
+        this.addressType = addressType
+    }
+
+    fun setStreetNumber(streetNumber: String?){
+        this.streetNumber = streetNumber
+    }
+
+    fun setStreetName(streetName: String?){
+        this.streetName = streetName
+    }
+
+    fun setCity(city: String?){
+        this.city = city
+    }
+
+    fun setParish(parish: String?){
+        this.parish =parish
+    }
+
+    fun setCounty(country: String?){
+        this.county = county
+    }
+
+    fun setCountry(country: String?){
+        this.country = country
     }
 }

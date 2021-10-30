@@ -7,17 +7,17 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Entity
-class Immunization {
+class Immunization(
+    @Column(unique = true)
+    private var vaccineName: String?,
+    private var batchLotNumber: Int?,
+    private var vaccinator: String?,
+    private var countryOfAdministration: String?,
+    private var manufacturer: String?,
+    private var dateOfDose: Date?
+) {
     @Id
     private var id: UUID = UUID.randomUUID()
-    @Column(unique = true)
-    private var vaccineName: String? = null
-    private var batchLotNumber: Int? = null
-    private var vaccinator: String? = null
-    private var countryOfAdministration: String? = null
-    private var manufacturer: String? = null
-    private var dateOfDose: Date? = null
-
 
 
     fun getId(): UUID{
