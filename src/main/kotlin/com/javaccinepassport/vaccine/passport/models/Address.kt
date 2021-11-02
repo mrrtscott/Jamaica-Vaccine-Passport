@@ -20,9 +20,9 @@ class Address(
 ) {
 
     @Id
-    private var id: UUID = UUID.randomUUID()
+    private var id: String = UUID.randomUUID().toString()
 
-    fun getId(): UUID {
+    fun getId(): String {
         return this.id
     }
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank
 class Traveller {
 
     @Id
-    private var id: UUID = UUID.randomUUID()
+    private var id: String = UUID.randomUUID().toString()
     @NotBlank
     private var firstName: String? = null
     private var middleName: String? = null
@@ -22,7 +22,7 @@ class Traveller {
     private var nationality: String? = null
     private var dateOfBirth: Date? = null
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "traveller_addresses",
         joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
@@ -30,15 +30,15 @@ class Traveller {
     )
     private var permanentAddress: List<Address>? = null
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "traveller_passports",
         joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "passportId", referencedColumnName = "id")]
+        inverseJoinColumns = [JoinColumn(name = "passportId", referencedColumnName = "passportNumber")]
     )
     private var passportDocument: List<Passport>? = null
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "traveller_vaccineReports",
         joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
@@ -46,14 +46,13 @@ class Traveller {
     )
     private var vaccineReport: List<VaccineReport>? = null
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "traveller_countries",
         joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "countryId", referencedColumnName = "id")]
+        inverseJoinColumns = [JoinColumn(name = "countryId", referencedColumnName = "code")]
     )
     private var listCountriesVisited: List<Country>? = null
-
 
 
 }

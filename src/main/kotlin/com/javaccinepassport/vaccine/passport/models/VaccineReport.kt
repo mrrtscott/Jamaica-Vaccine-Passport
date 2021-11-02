@@ -7,7 +7,7 @@ import javax.persistence.*
 class VaccineReport {
 
     @Id
-    private var id: UUID = UUID.randomUUID()
+    private var id: String = UUID.randomUUID().toString()
 
     @Column(unique = true)
     private var year: Int? = null

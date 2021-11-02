@@ -2,26 +2,49 @@ package com.javaccinepassport.vaccine.passport.models
 
 import com.javaccinepassport.vaccine.passport.models.Enum.Alert
 import com.javaccinepassport.vaccine.passport.models.Enum.VaccineRequirement
+import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-class Vaccine {
+class Vaccine(
+    private var name: String?,
+    private var manufacturer: String?,
+    private var dosesInRoutineSeries: Int?,
+    private var requirement: VaccineRequirement?,
+    private var alertLevel: Alert?
+) {
 
     @Id
-    private var id: UUID = UUID.randomUUID()
+    private var id: String = UUID.randomUUID().toString()
 
-    @Column(unique = true)
-    private var name: String? = null
+    fun getId(): String{
+        return this.id
+    }
 
-    private var manufacturer: String? = null
+    fun getName(): String?{
+        return this.name
+    }
 
-    private var dosesInRoutineSeries: Int? = null
+    fun getManufacturer(): String?{
+        return this.manufacturer
+    }
 
-    private var requirement: VaccineRequirement? = null
+    fun getDosesInRoutineSeries(): Int?{
+        return this.dosesInRoutineSeries
+    }
 
-    private var alertLevel: Alert? = null
+    fun getRequirement(): VaccineRequirement?{
+        return this.requirement
+    }
+
+    fun getAlertLevel(): Alert?{
+        return this.alertLevel
+    }
+
+
 
 }
