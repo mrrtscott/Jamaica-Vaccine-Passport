@@ -33,13 +33,6 @@ class Traveller(
         inverseJoinColumns = [JoinColumn(name = "passportId", referencedColumnName = "passportNumber")]
     )
     private var passportDocument: List<Passport>?,
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @JoinTable(
-        name = "traveller_vaccineReports",
-        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "vaccineReportId", referencedColumnName = "id")]
-    )
-    private var vaccineReport: List<VaccineReport>?,
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "traveller_countries",
@@ -49,11 +42,61 @@ class Traveller(
     private var listCountriesVisited: List<Country>?
 ) {
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "traveller_vaccineReports",
+        joinColumns = [javax.persistence.JoinColumn(name = "travellerId", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "vaccineReportId", referencedColumnName = "id")]
+    )
+    private var vaccineReport: List<VaccineReport>? = null
+
+
     @Id
     private var id: String = UUID.randomUUID().toString()
 
     fun getId(): String{
         return this.id
     }
+
+    fun getFirstName(): String?{
+        return this.firstName
+    }
+
+    fun getMiddleName(): String?{
+        return this.middleName
+    }
+
+    fun getLastName(): String?{
+        return this.lastName
+    }
+
+    fun getSex(): Sex?{
+        return this.sex
+    }
+
+    fun getNationality(): String?{
+        return this.nationality
+    }
+
+    fun getDateOfBirth(): Date?{
+        return this.dateOfBirth
+    }
+
+    fun getPermanentAddress(): List<Address>?{
+        return this.permanentAddress
+    }
+
+    fun getPassportDocument(): List<Passport>?{
+        return this.passportDocument
+    }
+
+    fun getVaccineReport(): List<VaccineReport>?{
+        return this.vaccineReport
+    }
+
+    fun getListCountriesVisited(): List<Country>?{
+        return this.listCountriesVisited
+    }
+
 
 }
